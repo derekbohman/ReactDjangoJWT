@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { KEY } from "../../localKey";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 
 const SearchResultsPage = () => {
   const [searchResults, setSearchResults] = useState([""]);
@@ -11,7 +10,7 @@ const SearchResultsPage = () => {
     getSearchResults();
   }, []);
 
-  async function getSearchResults(searchTerm = "Bob Ross") {
+  async function getSearchResults(searchTerm) {
     let response = await axios.get(
       `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=5&key=${KEY}`
     );
@@ -21,8 +20,17 @@ const SearchResultsPage = () => {
 
   return (
     <div>
-      <VideoPlayer searchResults={searchResults} />
-      <SearchBar getSearchResults={getSearchResults} />
+      <div>
+        <ul>
+          <li>
+
+          </li>
+        </ul>
+      </div>
+      <div>
+        <SearchBar getSearchResults={getSearchResults} />
+        
+      </div>
     </div>
   );
 };

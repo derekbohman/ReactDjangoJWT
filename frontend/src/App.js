@@ -4,9 +4,10 @@ import "./App.css";
 // import { KEY } from "./localKey";
 
 // Pages Imports
-import HomePage from "./pages/HomePage/HomePage";
+import YouTubePage from "./pages/YouTubePage/YouTubePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import UserPage from "./pages/UserPage/UserPage";
 // import VideoPage from "./pages/VideoPage";
 
 // Component Imports
@@ -16,32 +17,44 @@ import SearchBar from "./components/SearchBar/SearchBar";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
+import SearchResultsPage from "./pages/YouTubePage/YouTubePage";
 
 function App() {
   return (
     <div>
-      <Navbar />
-      <Link to="/">Home Page</Link>
-      <Link to="/login">Login Page</Link>
-      <Link to="/register">Register Page</Link>
-      {/* <Link to="/youtube">YouTube Page</Link> */}
+      <div>
+        <Navbar />
+      </div>
+      <div>
+        <li>
+          <ul>
+            <Link to="/">YouTube Page</Link>
+            <Link to="/login">Login Page</Link>
+            <Link to="/register">Register Page</Link>
+            <Link to="/user">User Page</Link>
+          </ul>
+        </li>
+      </div>
       <Routes>
         <Route
-          path="/"
+          exact
+          path="/user"
           element={
             <PrivateRoute>
-              <HomePage />
+              <UserPage />
             </PrivateRoute>
           }
         />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/" element={<YouTubePage />} />
         <Route path="/login" element={<LoginPage />} />
-        {/* <Route path="/youtube" element={<YouTubePage />} /> */}
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/user" element={<UserPage />} />
+        <Route path="/searchResults" element={<SearchResultsPage />} />
       </Routes>
-      <Footer />
-      <div>
+      {/* <div>
         <SearchBar />
-      </div>
+      </div> */}
+      <Footer />
     </div>
   );
 }
