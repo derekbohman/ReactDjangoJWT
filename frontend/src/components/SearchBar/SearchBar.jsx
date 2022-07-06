@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = (props) => {
   const navigate = useNavigate();
@@ -8,8 +8,8 @@ const SearchBar = (props) => {
     event.preventDefault();
     console.log(searchRequest);
     props.getSearchResults(searchRequest);
-    navigate("/searchResults")
-  }
+    navigate("/searchResults");
+  };
   return (
     <form>
       <div>
@@ -20,7 +20,9 @@ const SearchBar = (props) => {
           onChange={(event) => setSearchRequest(event.target.value)}
         />
       </div>
-      <button onClick={handleSubmit} type="submit">Search</button>
+      <button onClick={handleSubmit} type="submit">
+        Search
+      </button>
     </form>
   );
 };

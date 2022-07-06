@@ -4,6 +4,7 @@ import "./VideoPlayer.css";
 const VideoPlayer = () => {
   return (
     <iframe
+      title="Search Results"
       id="ytplayer"
       type="text/html"
       width="640"
