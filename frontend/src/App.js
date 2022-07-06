@@ -1,4 +1,7 @@
 // General Imports
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { KEY } from './localKey';
 import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 // import { KEY } from "./localKey";
@@ -20,41 +23,57 @@ import PrivateRoute from "./utils/PrivateRoute";
 import SearchResultsPage from "./pages/YouTubePage/YouTubePage";
 
 function App() {
+  const [searchResults, setSearchResults] = useState([""]);
+
+  useEffect(() => {
+    getSearchResults();
+  }, []);
+
+  async function getSearchResults(searchTerm) {
+    let response = await axios.get(
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=5&key=${KEY}`
+    );
+    console.log(response.data);
+    setSearchResults(response.data);
+  }
+
   return (
-    <div>
-      <div>
+    <div className="mainContent">
+      <div className="navBar">
         <Navbar />
       </div>
-      <div>
+      <div className="links">
         <li>
           <ul>
             <Link to="/">YouTube Page</Link>
             <Link to="/login">Login Page</Link>
             <Link to="/register">Register Page</Link>
             <Link to="/user">User Page</Link>
+            <Routes>
+              <Route
+                exact
+                path="/user"
+                element={
+                  <PrivateRoute>
+                    <UserPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route path="/" element={<YouTubePage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/user" element={<UserPage />} />
+              <Route path="/searchResults" element={<SearchResultsPage />} />
+            </Routes>
           </ul>
         </li>
       </div>
-      <Routes>
-        <Route
-          exact
-          path="/user"
-          element={
-            <PrivateRoute>
-              <UserPage />
-            </PrivateRoute>
-          }
-        />
-        <Route path="/" element={<YouTubePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/user" element={<UserPage />} />
-        <Route path="/searchResults" element={<SearchResultsPage />} />
-      </Routes>
-      {/* <div>
-        <SearchBar />
-      </div> */}
-      <Footer />
+      <div className="searchBar">
+        <SearchBar getSearchResults={getSearchResults} />
+      </div>
+      <div className="footer">
+        <Footer />
+      </div>
     </div>
   );
 }
