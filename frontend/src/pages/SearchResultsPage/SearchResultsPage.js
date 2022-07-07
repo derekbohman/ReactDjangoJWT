@@ -22,33 +22,31 @@ const SearchResultsPage = () => {
 
   return (
     <div className="mainContent">
-      <div className="searchResults">
-        <h1>Search Results</h1>
-        <div className="searchBar">
-          <SearchBar getSearchResults={getSearchResults} />
-        </div>
-        {searchResults ? (
-          searchResults.map((video) => {
-            if (video.snippet) {
-              return (
-                <div key={video.id.videoId}>
-                  <img
-                    key={video.id.videoId}
-                    src={video.snippet.thumbnails.default.url}
-                    alt={video.snippet.tittle}
-                    onClick={() => handleVideoPush(video)}
-                  />
-                  <p>{video.snippet.title}</p>
-                </div>
-              );
-            } else {
-              return null;
-            }
-          })
-        ) : (
-          <div>Loading...</div>
-        )}
+      <h1>Search Results</h1>
+      <div className="searchBar">
+        <SearchBar getSearchResults={getSearchResults} />
       </div>
+      {searchResults ? (
+        searchResults.map((video) => {
+          if (video.snippet) {
+            return (
+              <div key={video.id.videoId}>
+                <img
+                  key={video.id.videoId}
+                  src={video.snippet.thumbnails.default.url}
+                  alt={video.snippet.tittle}
+                  onClick={() => handleVideoPush(video)}
+                />
+                <p>{video.snippet.title}</p>
+              </div>
+            );
+          } else {
+            return null;
+          }
+        })
+      ) : (
+        <div>Loading...</div>
+      )}
     </div>
   );
 };

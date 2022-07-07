@@ -4,14 +4,18 @@ import { useLocation, useParams } from "react-router-dom";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import axios from "axios";
 import { KEY } from "../../localKey";
+import useVideoPush from "../../hooks/useVideoPush";
 
 const VideoPage = (props) => {
-  const [searchResults, setSearchResults] = useState([""]);
+  const [searchResults, setSearchResults] = useState([";"]);
+  const [relatedSearchResults, setRelatedSearchResults] = useState([""]);
+  const { handleVideoPush } = useVideoPush();
   const { videoId } = useParams();
   const { state } = useLocation();
 
   useEffect(() => {
     getSearchResults();
+    getRelatedSearchResults();
   }, []);
 
   async function getSearchResults(searchTerm) {
@@ -20,6 +24,14 @@ const VideoPage = (props) => {
     );
     console.log(response.data.items);
     setSearchResults(response.data.items);
+  }
+
+  async function getRelatedSearchResults() {
+    let response = await axios.get(
+      `https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${videoId}&type=video&key=${KEY}`
+    );
+    console.log(response.data.items);
+    setRelatedSearchResults(response.data.items);
   }
 
   return (
@@ -32,6 +44,27 @@ const VideoPage = (props) => {
         <VideoPlayer videoId={videoId} />
       </div>
       <p>description: {state.description}</p>
+      {relatedSearchResults ? (
+        relatedSearchResults.map((video) => {
+          if (video.snippet) {
+            return (
+              <div key={video.id.videoId}>
+                <img
+                  key={video.id.videoId}
+                  src={video.snippet.thumbnails.default.url}
+                  alt={video.snippet.tittle}
+                  onClick={() => handleVideoPush(video)}
+                />
+                <p>{video.snippet.title}</p>
+              </div>
+            );
+          } else {
+            return null;
+          }
+        })
+      ) : (
+        <div>Loading...</div>
+      )}
       <div className="searchBar">
         <SearchBar getSearchResults={getSearchResults} />
       </div>
