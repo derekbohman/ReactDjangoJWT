@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import SearchResultsPage from "../../pages/SearchResultsPage/SearchResultsPage";
 
 const SearchBar = (props) => {
   const navigate = useNavigate();
@@ -23,6 +24,9 @@ const SearchBar = (props) => {
       <button onClick={handleSubmit} type="submit">
         Search
       </button>
+      <Routes>
+        <Route path="/searchResults" element={<SearchResultsPage />} />
+      </Routes>
     </form>
   );
 };

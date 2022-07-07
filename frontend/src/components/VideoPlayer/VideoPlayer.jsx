@@ -1,15 +1,15 @@
 import React from "react";
 import "./VideoPlayer.css";
 
-const VideoPlayer = () => {
+const VideoPlayer = ({ videoId }) => {
   return (
     <iframe
-      title="Search Results"
+      title="Video"
       id="ytplayer"
       type="text/html"
       width="640"
       height="360"
-      src="https://www.youtube.com/embed/lLWEXRAnQd0?autoplay=1&origin=http://example.com"
+      src={`https://www.youtube.com/embed/${videoId}?autoplay=1&origin=http://example.com`}
       frameborder="0"
     ></iframe>
   );
