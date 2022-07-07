@@ -1,10 +1,10 @@
 // General Imports
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { KEY } from "./localKey";
+import React from 'react';
+// import React, { useState, useEffect } from "react";
+// import axios from "axios";
+// import { KEY } from "./localKey";
 import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
-// import { KEY } from "./localKey";
 
 // Pages Imports
 import YouTubePage from "./pages/YouTubePage/YouTubePage";
@@ -16,28 +16,28 @@ import VideoPage from "./pages/VideoPage/VideoPage";
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
-import SearchBar from "./components/SearchBar/SearchBar";
+// import SearchBar from "./components/SearchBar/SearchBar";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
 import SearchResultsPage from "./pages/SearchResultsPage/SearchResultsPage";
-import useVideoPush from "./hooks/useVideoPush";
+// import useVideoPush from "./hooks/useVideoPush";
 
 function App() {
-  const [searchResults, setSearchResults] = useState([""]);
-  const { handleVideoPush } = useVideoPush();
+  // const [searchResults, setSearchResults] = useState([""]);
+  // // const { handleVideoPush } = useVideoPush();
 
-  useEffect(() => {
-    getSearchResults();
-  }, []);
+  // useEffect(() => {
+  //   getSearchResults();
+  // }, []);
 
-  async function getSearchResults(searchTerm = "Bob Ross") {
-    let response = await axios.get(
-      `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=5&key=${KEY}`
-    );
-    console.log(response.data.items);
-    setSearchResults(response.data.items);
-  }
+  // async function getSearchResults(searchTerm) {
+  //   let response = await axios.get(
+  //     `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=5&key=${KEY}`
+  //   );
+  //   console.log(response.data.items);
+  //   setSearchResults(response.data.items);
+  // }
 
   return (
     <div className="mainContent">
@@ -71,17 +71,17 @@ function App() {
           </ul>
         </li>
       </div>
-      <div className="searchBar">
+      {/* <div className="searchBar">
         <SearchBar getSearchResults={getSearchResults} />
-      </div>
-      {searchResults ? (
+      </div> */}
+      {/* {searchResults ? (
         searchResults.map((video) => {
           if (video.snippet) {
             return (
               <div key={video.id.videoId}>
                 <img
                   key={video.id.videoId}
-                  src={video.snippet.thumbnails.medium.url}
+                  src={video.snippet.thumbnails.default.url}
                   alt={video.snippet.tittle}
                   onClick={() => handleVideoPush(video)}
                 />
@@ -94,7 +94,7 @@ function App() {
         })
       ) : (
         <div>Loading...</div>
-      )}
+      )} */}
       <div className="footer">
         <Footer />
       </div>
