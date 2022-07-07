@@ -1,4 +1,9 @@
+import React, { useState } from "react";
+import useVideoPush from "../../hooks/useVideoPush";
+
 const MapResults = () => {
+  const [searchResults, setSearchResults] = useState([""]);
+  const { handleVideoPush } = useVideoPush();
   searchResults ? (
     searchResults.map((video) => {
       if (video.snippet) {

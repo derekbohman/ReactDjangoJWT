@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { KEY } from "../../localKey";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import "./YouTubePage.css"
 
 const YouTubePage = () => {
   const [searchResults, setSearchResults] = useState([""]);
@@ -21,7 +22,7 @@ const YouTubePage = () => {
   return (
     <div className="mainContent">
       <div className="title">
-        <h1>YouTube Page </h1>
+        <h1>YouTube Clone </h1>
       </div>
       <div className="searchBar">
         <SearchBar getSearchResults={getSearchResults} />

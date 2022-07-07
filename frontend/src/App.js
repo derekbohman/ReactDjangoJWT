@@ -1,5 +1,5 @@
 // General Imports
-import React from 'react';
+import React from "react";
 // import React, { useState, useEffect } from "react";
 // import axios from "axios";
 // import { KEY } from "./localKey";
@@ -12,6 +12,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import UserPage from "./pages/UserPage/UserPage";
 import VideoPage from "./pages/VideoPage/VideoPage";
+import SearchResultsPage from "./pages/SearchResultsPage/SearchResultsPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -20,7 +21,6 @@ import Footer from "./components/Footer/Footer";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
-import SearchResultsPage from "./pages/SearchResultsPage/SearchResultsPage";
 // import useVideoPush from "./hooks/useVideoPush";
 
 function App() {
@@ -41,9 +41,7 @@ function App() {
 
   return (
     <div className="mainContent">
-      <div className="navBar">
-        <Navbar />
-      </div>
+      <Navbar />
       <div className="links">
         <li>
           <ul>
@@ -95,9 +93,7 @@ function App() {
       ) : (
         <div>Loading...</div>
       )} */}
-      <div className="footer">
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 }
