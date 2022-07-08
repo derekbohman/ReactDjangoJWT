@@ -1,5 +1,13 @@
-.links a {
-    margin-bottom: 0.5rem;
-    text-decoration: none;
+.links {
+  margin-right: 65rem;
 }
 
+.links a {
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+}
+
+.links :visited {
+  text-decoration: none;
+  color: black;
+}
