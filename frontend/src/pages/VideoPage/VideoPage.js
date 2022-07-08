@@ -7,31 +7,31 @@ import useVideoPush from "../../hooks/useVideoPush";
 import "./VideoPage.css";
 
 const VideoPage = (props) => {
-  const [searchResults, setSearchResults] = useState([""]);
+  // const [searchResults, setSearchResults] = useState([""]);
   const [relatedSearchResults, setRelatedSearchResults] = useState([""]);
   const { handleVideoPush } = useVideoPush();
   const { videoId } = useParams();
   const { state } = useLocation();
 
   useEffect(() => {
-    getSearchResults();
+    // getSearchResults();
     getRelatedSearchResults();
-  }, []);
+  }, [videoId]);
 
-  async function getSearchResults(searchTerm) {
-    let response = await axios.get(
-      `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=5&key=${KEY}`
-    );
-    console.log(response.data.items);
-    setRelatedSearchResults(response.data.items);
-  }
+  // async function getSearchResults(searchTerm) {
+  //   let response = await axios.get(
+  //     `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=5&key=${KEY}`
+  //   );
+  //   console.log(response.data.items);
+  //   setSearchResults(response.data.items);
+  // }
 
   async function getRelatedSearchResults(videoId) {
     let response = await axios.get(
       `https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${videoId}&type=video&maxResults=5&key=${KEY}`
     );
     console.log(response.data.items);
-    setSearchResults(response.data.items);
+    setRelatedSearchResults(response.data.items);
   }
 
   return (
