@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { KEY } from "../../localKey";
 import useVideoPush from "../../hooks/useVideoPush";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import "./SearchResultsPage.css";
 
 const SearchResultsPage = () => {
   const [searchResults, setSearchResults] = useState([""]);
@@ -22,7 +23,9 @@ const SearchResultsPage = () => {
 
   return (
     <div className="mainContent">
-      <h1>Search Results</h1>
+      <div className="title">
+        <h1>Search Results</h1>
+      </div>
       <div className="searchBar">
         <SearchBar getSearchResults={getSearchResults} />
       </div>

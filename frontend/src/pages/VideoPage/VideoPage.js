@@ -5,6 +5,7 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import axios from "axios";
 import { KEY } from "../../localKey";
 import useVideoPush from "../../hooks/useVideoPush";
+import "./VideoPage.css";
 
 const VideoPage = (props) => {
   const [searchResults, setSearchResults] = useState([";"]);

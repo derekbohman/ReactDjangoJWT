@@ -1,4 +1,9 @@
 .title {
-    border: black solid 2px;
+    display: flex;
     justify-content: center;
+    margin-bottom: 1rem;
+}
+
+ul {
+    list-style: none;
 }
