@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
-import SearchResultsPage from "../../pages/SearchResultsPage/SearchResultsPage";
+import { useNavigate } from "react-router-dom";
 import "./SearchBar.css";
 
 const SearchBar = (props) => {
@@ -26,9 +25,6 @@ const SearchBar = (props) => {
           Search
         </button>
       </div>
-      <Routes>
-        <Route path="/searchResults" element={<SearchResultsPage />} />
-      </Routes>
     </form>
   );
 };

@@ -57,12 +57,43 @@ button:hover {
   font-size: 17px;
 }
 
-ul {
-  list-style: none;
+li {
   list-style-type: none;
 }
 
-li {
-  list-style: none;
-  list-style-type: none;
+.links {
+  margin-right: 65rem;
+}
+
+.links a {
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+}
+
+.links :visited {
+  text-decoration: none;
+  color: black;
+}
+
+.links a :hover {
+  cursor: pointer;
+}
+
+.searchBar {
+  margin-top: 1rem;
+  position: relative;
+  top: 0;
+}
+
+.searchContent {
+margin-left: 35rem;
+margin-top: 5rem;
+}
+
+.searchResults {
+  margin: 1rem;
+}
+
+.searchResults :hover {
+  cursor: pointer;
 }

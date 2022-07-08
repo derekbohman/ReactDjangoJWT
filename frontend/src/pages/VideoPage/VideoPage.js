@@ -1,14 +1,13 @@
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import React, { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import SearchBar from "../../components/SearchBar/SearchBar";
 import axios from "axios";
 import { KEY } from "../../localKey";
 import useVideoPush from "../../hooks/useVideoPush";
 import "./VideoPage.css";
 
 const VideoPage = (props) => {
-  const [searchResults, setSearchResults] = useState([";"]);
+  const [searchResults, setSearchResults] = useState([""]);
   const [relatedSearchResults, setRelatedSearchResults] = useState([""]);
   const { handleVideoPush } = useVideoPush();
   const { videoId } = useParams();
@@ -24,50 +23,53 @@ const VideoPage = (props) => {
       `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=5&key=${KEY}`
     );
     console.log(response.data.items);
-    setSearchResults(response.data.items);
+    setRelatedSearchResults(response.data.items);
   }
 
-  async function getRelatedSearchResults() {
+  async function getRelatedSearchResults(videoId) {
     let response = await axios.get(
-      `https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${videoId}&type=video&key=${KEY}`
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${videoId}&type=video&maxResults=5&key=${KEY}`
     );
     console.log(response.data.items);
-    setRelatedSearchResults(response.data.items);
+    setSearchResults(response.data.items);
   }
 
   return (
     <div className="mainContent">
       <div className="title">
-        <h1>Welcome to the Video Page</h1>
+        <h1>Video Page</h1>
       </div>
-      <p>Title: {state.title}</p>
+      <div className="videoTitle">
+        <p>{state.title}</p>
+      </div>
       <div className="videoPlayer">
         <VideoPlayer videoId={videoId} />
       </div>
-      <p>description: {state.description}</p>
-      {relatedSearchResults ? (
-        relatedSearchResults.map((video) => {
-          if (video.snippet) {
-            return (
-              <div key={video.id.videoId}>
-                <img
-                  key={video.id.videoId}
-                  src={video.snippet.thumbnails.default.url}
-                  alt={video.snippet.tittle}
-                  onClick={() => handleVideoPush(video)}
-                />
-                <p>{video.snippet.title}</p>
-              </div>
-            );
-          } else {
-            return null;
-          }
-        })
-      ) : (
-        <div>Loading...</div>
-      )}
-      <div className="searchBar">
-        <SearchBar getSearchResults={getSearchResults} />
+      <div className="videoDescription">
+        <p>{state.description}</p>
+      </div>
+      <div className="searchContent">
+        {relatedSearchResults ? (
+          relatedSearchResults.map((video) => {
+            if (video.snippet) {
+              return (
+                <div className="searchResults" key={video.id.videoId}>
+                  <p>{video.snippet.title}</p>
+                  <img
+                    key={video.id.videoId}
+                    src={video.snippet.thumbnails.medium.url}
+                    alt={video.snippet.title}
+                    onClick={() => handleVideoPush(video)}
+                  />
+                </div>
+              );
+            } else {
+              return null;
+            }
+          })
+        ) : (
+          <div>Loading...</div>
+        )}
       </div>
     </div>
   );

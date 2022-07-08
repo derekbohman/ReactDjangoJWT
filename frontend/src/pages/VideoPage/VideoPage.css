@@ -1,5 +1,23 @@
 .title {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.videoTitle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.videoPlayer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.videoDescription {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
 }
