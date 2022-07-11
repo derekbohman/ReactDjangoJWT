@@ -1,8 +1,27 @@
 .title {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 ul {
-    list-style: none;
+  list-style: none;
+}
+
+.searchContent {
+  margin-left: 35rem;
+  margin-top: 5rem;
+}
+
+.searchResults {
+  margin: 1rem;
+}
+
+.searchResults :hover {
+  cursor: pointer;
+}
+
+.searchBar {
+  margin-top: 1rem;
+  position: relative;
+  top: 0;
 }

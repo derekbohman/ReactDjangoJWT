@@ -21,3 +21,9 @@
   justify-content: center;
   margin-bottom: 1rem;
 }
+
+.searchBar {
+  margin-top: 1rem;
+  position: relative;
+  top: 0;
+}

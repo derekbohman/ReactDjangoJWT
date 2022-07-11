@@ -78,22 +78,3 @@ li {
 .links a :hover {
   cursor: pointer;
 }
-
-.searchBar {
-  margin-top: 1rem;
-  position: relative;
-  top: 0;
-}
-
-.searchContent {
-margin-left: 35rem;
-margin-top: 5rem;
-}
-
-.searchResults {
-  margin: 1rem;
-}
-
-.searchResults :hover {
-  cursor: pointer;
-}

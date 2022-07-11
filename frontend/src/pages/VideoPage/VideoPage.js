@@ -4,27 +4,31 @@ import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import { KEY } from "../../localKey";
 import useVideoPush from "../../hooks/useVideoPush";
+import SearchBar from "../../components/SearchBar/SearchBar";
 import "./VideoPage.css";
 
 const VideoPage = (props) => {
-  // const [searchResults, setSearchResults] = useState([""]);
+  const [searchResults, setSearchResults] = useState([""]);
   const [relatedSearchResults, setRelatedSearchResults] = useState([""]);
   const { handleVideoPush } = useVideoPush();
   const { videoId } = useParams();
   const { state } = useLocation();
 
   useEffect(() => {
-    // getSearchResults();
+    getSearchResults();
+  }, []);
+
+  useEffect(() => {
     getRelatedSearchResults();
   }, [videoId]);
 
-  // async function getSearchResults(searchTerm) {
-  //   let response = await axios.get(
-  //     `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=5&key=${KEY}`
-  //   );
-  //   console.log(response.data.items);
-  //   setSearchResults(response.data.items);
-  // }
+  async function getSearchResults(searchTerm) {
+    let response = await axios.get(
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=5&key=${KEY}`
+    );
+    console.log(response.data.items);
+    setSearchResults(response.data.items);
+  }
 
   async function getRelatedSearchResults(videoId) {
     let response = await axios.get(
@@ -38,6 +42,9 @@ const VideoPage = (props) => {
     <div className="mainContent">
       <div className="title">
         <h1>Video Page</h1>
+      </div>
+      <div className="searchBar">
+        <SearchBar getSearchResults={getSearchResults} />
       </div>
       <div className="videoTitle">
         <p>{state.title}</p>
