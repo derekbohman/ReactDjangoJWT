@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { KEY } from "../../localKey";
 import axios from "axios";
-import useVideoPush from "../../hooks/useVideoPush";
+// import useVideoPush from "../../hooks/useVideoPush";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import "./YouTubePage.css";
 
 const YouTubePage = () => {
   const [searchResults, setSearchResults] = useState([""]);
-  const { handleVideoPush } = useVideoPush();
+  // const { handleVideoPush } = useVideoPush();
 
-  useEffect(() => {
-    getSearchResults();
-  }, []);
+  // useEffect(() => {
+  //   getSearchResults();
+  // }, []);
 
-  async function getSearchResults(searchTerm="Bob Ross") {
+  async function getSearchResults(searchTerm) {
     let response = await axios.get(
       `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=5&key=${KEY}`
     );
@@ -28,7 +28,7 @@ const YouTubePage = () => {
       <div className="searchBar">
         <SearchBar getSearchResults={getSearchResults} />
       </div>
-      <div className="searchContent">
+      {/* <div className="searchContent">
         {searchResults ? (
           searchResults.map((video) => {
             if (video.snippet) {
@@ -50,7 +50,7 @@ const YouTubePage = () => {
         ) : (
           <div>Loading...</div>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
